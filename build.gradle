@@ -18,7 +18,7 @@ apply plugin: 'war'
 apply plugin: 'application'
 apply plugin: 'io.spring.dependency-management'
 
-jar {
+war {
     baseName = 'marca-passo'
     version = '0.0.1-SNAPSHOT'
 }
