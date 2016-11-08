@@ -1,7 +1,7 @@
-package br.com.guiabolso.marcapasso.services.partnerLead
+package br.com.guiabolso.marcapasso.services.interested
 
-import br.com.guiabolso.marcapasso.models.partnerLead.CreatePartnerLeadRequest
-import br.com.guiabolso.marcapasso.models.partnerLead.CreatePartnerLeadResponse
+import br.com.guiabolso.marcapasso.models.interested.CreateInterestedRequest
+import br.com.guiabolso.marcapasso.models.interested.CreateInterestedResponse
 import groovy.util.logging.Slf4j
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.dao.DataAccessException
@@ -13,47 +13,46 @@ import javax.sql.DataSource
 
 @Slf4j
 @Component
-class JDBCPartnerLeadService implements PartnerLeadService {
+class JDBCInterestedService implements InterestedService {
 
     JdbcTemplate jdbcTemplate
 
     @Autowired
-    JDBCPartnerLeadService(DataSource dataSource) {
+    JDBCInterestedService(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource)
     }
 
-    @Override
-    CreatePartnerLeadResponse create(CreatePartnerLeadRequest request) {
+    CreateInterestedResponse create(CreateInterestedRequest request) {
         try {
 
             SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate)
-                    .withTableName("partner_lead")
+                    .withTableName("interested")
                     .usingGeneratedKeyColumns("sequence_id")
 
-            CreatePartnerLeadResponse response = new CreatePartnerLeadResponse(
+            CreateInterestedResponse response = new CreateInterestedResponse(
                     id: UUID.randomUUID().toString(),
-                    interestedId: request.interestedId,
+                    prospectId: request.prospectId,
                     userId: request.userId,
+                    leadId: "----------------DUMMY---------------",
                     offerId: request.offerId,
-                    leadId: request.leadId,
-                    url: request.url,
+                    offerRank: request.offerRank,
                     createdAt: new Date()
             )
 
             Map<String, Object> params = new HashMap<>();
             params.put("id", response.id)
-            params.put("interested_id", response.interestedId)
+            params.put("prospect_id", response.prospectId)
             params.put("user_id", response.userId)
             params.put("offer_id", response.offerId)
             params.put("lead_id", response.leadId)
-            params.put("url", response.url)
+            params.put("offer_rank", response.offerRank)
             params.put("created_at", response.createdAt)
 
             response.sequenceId = simpleJdbcInsert.executeAndReturnKey(params)
 
             return response
         } catch (DataAccessException exeption) {
-            log.error("Fatal could not write partnerlead in database partnerlead={}", request, exeption)
+            log.error("Fatal could not write interested in database interested={}", request, exeption)
             throw exeption
         }
     }

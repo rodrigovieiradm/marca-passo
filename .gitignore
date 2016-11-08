@@ -1,6 +1,7 @@
 
 # Idea
 .idea/*
+.gradle/*
 
 build/*
 
