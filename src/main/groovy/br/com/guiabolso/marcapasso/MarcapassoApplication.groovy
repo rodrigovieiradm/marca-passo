@@ -5,8 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 
 @SpringBootApplication
 public class MarcapassoApplication {
-
     public static void main(String[] args) {
-        SpringApplication.run(MarcapassoApplication.class, args);
+        SpringApplication.run(MarcapassoApplication.class, args)
     }
 }

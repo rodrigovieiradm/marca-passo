@@ -39,7 +39,7 @@ class JDBCInterestedService implements InterestedService {
                     createdAt: new Date()
             )
 
-            Map<String, Object> params = new HashMap<>();
+            Map<String, Object> params = new HashMap<>()
             params.put("id", response.id)
             params.put("prospect_id", response.prospectId)
             params.put("user_id", response.userId)

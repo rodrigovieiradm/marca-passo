@@ -40,7 +40,7 @@ class JDBCPartnerLeadService implements PartnerLeadService {
                     createdAt: new Date()
             )
 
-            Map<String, Object> params = new HashMap<>();
+            Map<String, Object> params = new HashMap<>()
             params.put("id", response.id)
             params.put("interested_id", response.interestedId)
             params.put("user_id", response.userId)
