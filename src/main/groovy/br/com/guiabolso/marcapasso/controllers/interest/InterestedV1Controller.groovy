@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.RestController
 @Slf4j
 @RequestMapping(value = "/interested/v1/")
 @RestController
-class InterestedController {
+class InterestedV1Controller {
 
     private InterestedService interestedService
 
     @Autowired
-    InterestedController(InterestedService interestedService) {
+    InterestedV1Controller(InterestedService interestedService) {
         this.interestedService = interestedService
     }
 
