@@ -25,5 +25,4 @@ class CreatePartnerLeadRequest {
     @Size(min = 1)
     @NotNull
     String url
-
 }

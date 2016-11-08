@@ -23,7 +23,7 @@ class PartnerLeadV1Controller {
         this.partnerLeadService = partnerLeadService
     }
 
-    @RequestMapping(value = "/create/", method = RequestMethod.POST)
+    @RequestMapping(value = "create", method = RequestMethod.POST)
     public CreatePartnerLeadResponse create(@Validated @RequestBody CreatePartnerLeadRequest request) {
         log.info("request={}", request)
         return partnerLeadService.create(request)
