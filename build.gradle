@@ -18,10 +18,17 @@ apply plugin: 'war'
 apply plugin: 'application'
 apply plugin: 'io.spring.dependency-management'
 
+//noinspection GroovyUnusedAssignment
+applicationDefaultJvmArgs=["-Xmx100m"]
+//noinspection GroovyUnusedAssignment
+mainClassName = 'br.com.guiabolso.marcapasso.MarcapassoApplication'
+
+//noinspection GroovyAssignabilityCheck
 war {
     baseName = 'marca-passo'
     version = '0.0.1-SNAPSHOT'
 }
+
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
