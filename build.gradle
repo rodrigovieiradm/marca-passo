@@ -40,4 +40,6 @@ dependencies {
     compile('mysql:mysql-connector-java:5.1.38')
 
     testCompile('org.springframework.boot:spring-boot-starter-test')
+
+    compile fileTree(dir: 'libs', include: '*.jar')
 }
