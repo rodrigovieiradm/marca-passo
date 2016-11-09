@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '1.4.1.RELEASE'
+        springBootVersion = '1.3.4.RELEASE'
     }
     repositories {
         mavenCentral()
@@ -21,7 +21,7 @@ apply plugin: 'io.spring.dependency-management'
 //noinspection GroovyUnusedAssignment
 applicationDefaultJvmArgs=["-Xmx100m"]
 //noinspection GroovyUnusedAssignment
-mainClassName = 'br.com.guiabolso.marcapasso.MarcapassoApplication'
+mainClassName = 'br.com.guiabolso.marcapasso.Application'
 
 //noinspection GroovyAssignabilityCheck
 war {
