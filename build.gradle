@@ -45,6 +45,8 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
     runtime('org.springframework.boot:spring-boot-devtools')
 
+    compile 'com.amazonaws:aws-java-sdk-kms:1.10.34'
+
     compile('mysql:mysql-connector-java:5.1.38')
 
     testCompile('org.springframework.boot:spring-boot-starter-test')
