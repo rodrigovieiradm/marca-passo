@@ -32,13 +32,14 @@ class JDBCInterestedService implements InterestedService {
                     .withTableName("interested")
                     .usingGeneratedKeyColumns("sequence_id")
 
+            request.offer.url = buildUrlOffer(request.offer, leadId, request.variables, request.simulation)
+
             CreateInterestedResponse response = new CreateInterestedResponse(
                     id: UUID.randomUUID().toString(),
                     prospectId: request.prospectId,
                     userId: request.userId,
                     leadId: leadId,
                     offer: request.offer,
-                    offerUrl: generateOfferUrl(request.offer, leadId, request.variables, request.simulation),
                     createdAt: new Date()
             )
 
@@ -62,7 +63,7 @@ class JDBCInterestedService implements InterestedService {
         }
     }
 
-    private static generateOfferUrl(Offer offer, String leadId, Map<String, Object> variables, Map<String, Object> simulation) {
+    private static buildUrlOffer(Offer offer, String leadId, Map<String, Object> variables, Map<String, Object> simulation) {
 
         String url = offer?.url?.replace('{LEAD_ID}', leadId)
 

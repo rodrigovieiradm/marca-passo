@@ -11,6 +11,5 @@ class CreateInterestedResponse {
     Long userId
     String leadId
     Offer offer
-    String offerUrl
     Date createdAt
 }
