@@ -70,24 +70,28 @@ class JDBCInterestedService implements InterestedService {
         'SIMPLIC', 'https://www.simplic.com.br/?utm_source=guiabolso&utm_medium=cpa&utm_campaign=marketplace&hash={HASH_CPF}'
         */
 
-        String url = offer.url.replace('{LEAD_ID}', leadId)
+        String url = offer?.url?.replace('{LEAD_ID}', leadId)
 
-        String cpf = VariablesUtils.getUserCpfByVariables(variables)
-        String hashCpf = MessageDigest.getInstance("MD5").digest(cpf.bytes).encodeHex().toString()
-        String name = VariablesUtils.getUserFullNameByVariables(variables)
-        String decimalValue = simulation.getOrDefault("amount", 0) + "00"
-        String instalments = simulation.getOrDefault("installments", 0)
-        String email = VariablesUtils.getUserEmailByVariables(variables)
-        String value = simulation.getOrDefault("amount", 0)
-        String notEmptyReason = ""
+        if (url) {
 
-        url = url.replace('{HASH_CPF}', hashCpf)
-        url = url.replace('{NAME}', name)
-        url = url.replace('{DECIMAL_VALUE}', decimalValue)
-        url = url.replace('{INSTALMENTS}', instalments)
-        url = url.replace("'{EMAIL}", email)
-        url = url.replace("'{VALUE}", value)
-        url = url.replace("'{NOT_EMPTY_REASON}", notEmptyReason)
+            String cpf = VariablesUtils.getUserCpfByVariables(variables)
+            String hashCpf = MessageDigest.getInstance("MD5").digest(cpf.bytes).encodeHex().toString()
+            String name = VariablesUtils.getUserFullNameByVariables(variables)
+            String decimalValue = simulation.getOrDefault("amount", 0) + "00"
+            String instalments = simulation.getOrDefault("installments", 0)
+            String email = VariablesUtils.getUserEmailByVariables(variables)
+            String value = simulation.getOrDefault("amount", 0)
+            String notEmptyReason = ""
+
+            url = url.replace('{HASH_CPF}', hashCpf)
+            url = url.replace('{NAME}', name)
+            url = url.replace('{DECIMAL_VALUE}', decimalValue)
+            url = url.replace('{INSTALMENTS}', instalments)
+            url = url.replace("'{EMAIL}", email)
+            url = url.replace("'{VALUE}", value)
+            url = url.replace("'{NOT_EMPTY_REASON}", notEmptyReason)
+
+        }
 
         return url
     }
