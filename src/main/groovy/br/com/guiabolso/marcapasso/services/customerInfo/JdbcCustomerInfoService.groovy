@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component
 
 import javax.sql.DataSource
 import java.sql.Types
-import java.util.concurrent.Future
 
 @Slf4j
 @Component

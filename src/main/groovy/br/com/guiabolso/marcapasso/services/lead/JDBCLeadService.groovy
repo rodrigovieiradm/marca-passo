@@ -1,6 +1,6 @@
 package br.com.guiabolso.marcapasso.services.lead
 
-import br.com.guiabolso.marcapasso.Utils.UtsUtils
+import br.com.guiabolso.marcapasso.Utils.VariablesUtils
 import br.com.guiabolso.marcapasso.models.lead.CreateLeadRequest
 import br.com.guiabolso.marcapasso.models.lead.CreateLeadResponse
 import br.com.guiabolso.marcapasso.services.customerInfo.CustomerInfoService
@@ -34,11 +34,11 @@ class JDBCLeadService implements LeadService {
             SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate)
                     .withTableName("lead")
 
-            Map<String, Object> uts = request.uts
+            Map<String, Object> variables = request.variables
 
             CreateLeadResponse response = new CreateLeadResponse()
             response.id = UUID.randomUUID().toString()
-            response.customerInfo = UtsUtils.getCustomerInfoMapByUTS(uts)
+            response.customerInfo = VariablesUtils.getCustomerInfoMapByVariables(variables)
             response.createdAt = new Date()
 
             response.status = LEAD_STATUS_CREATED
@@ -46,18 +46,18 @@ class JDBCLeadService implements LeadService {
             response.utsId = request.utsId
             response.lastUpdate = new Date()
 
-            response.apiClientUniqueId = uts.getOrDefault("USER.EMAIL", "")
+            response.apiClientUniqueId = variables.getOrDefault("USER.EMAIL", "")
 
             response.userId = userId
             response.adId = request.adId
             response.recommendationId = request.recommendationId
 
-            response.bankAccounts = UtsUtils.getBankAccountsByUts(uts)
+            response.bankAccounts = VariablesUtils.getBankAccountsByVariables(variables)
 
             Map<String, Object> params = new HashMap<>()
             params.put("id", response.id)
 
-            params.put("costumer_info", UtsUtils.getCustomerInfoJsonByUts(response.customerInfo))
+            params.put("costumer_info", VariablesUtils.getCustomerInfoJsonByVariables(response.customerInfo))
 
             params.put("created_at", response.createdAt)
             params.put("status", response.status)
