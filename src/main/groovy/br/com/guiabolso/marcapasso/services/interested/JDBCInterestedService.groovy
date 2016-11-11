@@ -64,12 +64,6 @@ class JDBCInterestedService implements InterestedService {
 
     private static generateOfferUrl(Offer offer, String leadId, Map<String, Object> variables, Map<String, Object> simulation) {
 
-        /*
-        'LENDICO', 'https://www.lendico.com.br/?utm_source=guiabolso&utm_medium=partnership&partner_id=guia_bolso&hash={HASH_CPF}&nome={NAME}&valor={DECIMAL_VALUE}&parcelas={INSTALMENTS}'
-        'BANKFACIL', 'https://www.bkfonline.com.br/emprestimos/garantia-veiculo/afiliados/app?utm_source=guiabolso&utm_medium=affiliates&inputNome={NAME}&inputEmail={EMAIL}&how_much={VALUE}&instalments={INSTALMENTS}&what_for={NOT_EMPTY_REASON}&ref=guiabolso&hash={HASH_CPF}'
-        'SIMPLIC', 'https://www.simplic.com.br/?utm_source=guiabolso&utm_medium=cpa&utm_campaign=marketplace&hash={HASH_CPF}'
-        */
-
         String url = offer?.url?.replace('{LEAD_ID}', leadId)
 
         if (url) {
@@ -81,6 +75,11 @@ class JDBCInterestedService implements InterestedService {
             String instalments = simulation.getOrDefault("installments", 0)
             String email = VariablesUtils.getUserEmailByVariables(variables)
             String value = simulation.getOrDefault("amount", 0)
+
+            /**
+             * TODO: O front não passa esse parametro pro z80 q nao passa pro marca-passo.
+             * Necessário no futuro atualizar este parametro.
+             */
             String notEmptyReason = ""
 
             url = url.replace('{HASH_CPF}', hashCpf)
