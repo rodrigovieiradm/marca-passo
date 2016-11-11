@@ -1,5 +1,6 @@
 package br.com.guiabolso.marcapasso.models.interested
 
+import br.com.guiabolso.marcapasso.models.Offer
 import groovy.transform.ToString
 
 @ToString(includeFields = true)
@@ -9,7 +10,6 @@ class CreateInterestedResponse {
     String prospectId
     Long userId
     String leadId
-    String offerId
-    Integer offerRank
+    Offer offer
     Date createdAt
 }

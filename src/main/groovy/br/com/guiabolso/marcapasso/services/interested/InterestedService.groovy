@@ -4,5 +4,5 @@ import br.com.guiabolso.marcapasso.models.interested.CreateInterestedRequest
 import br.com.guiabolso.marcapasso.models.interested.CreateInterestedResponse
 
 interface InterestedService {
-    CreateInterestedResponse create(CreateInterestedRequest request)
+    CreateInterestedResponse create(String leadId, CreateInterestedRequest request)
 }
