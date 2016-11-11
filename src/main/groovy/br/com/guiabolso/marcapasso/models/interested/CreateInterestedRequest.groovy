@@ -1,23 +1,19 @@
 package br.com.guiabolso.marcapasso.models.interested
 
+import br.com.guiabolso.marcapasso.models.Offer
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import groovy.transform.ToString
 
-import javax.validation.constraints.NotNull
-import javax.validation.constraints.Size
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 @ToString(includeFields = true)
 class CreateInterestedRequest {
-    @Size(min = 36, max = 36)
-    @NotNull
-    String prospectId
-
-    @NotNull
     Long userId
-
-    @Size(min = 1)
-    @NotNull
-    String offerId
-
-    @NotNull
-    Integer offerRank
+    String utsId
+    Long recommendationId
+    String adId
+    String prospectId
+    Offer offer
+    Map<String, Object> parameters
+    Map<String, Object> simulation
+    Map<String, Object> variables
 }
