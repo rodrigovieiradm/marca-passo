@@ -75,7 +75,7 @@ class JDBCInterestedService implements InterestedService {
         String cpf = VariablesUtils.getUserCpfByVariables(variables)
         String hashCpf = MessageDigest.getInstance("MD5").digest(cpf.bytes).encodeHex().toString()
         String name = VariablesUtils.getUserFullNameByVariables(variables)
-        String decimalValue = ""
+        String decimalValue = simulation.getOrDefault("amount", 0) + "00"
         String instalments = simulation.getOrDefault("installments", 0)
         String email = VariablesUtils.getUserEmailByVariables(variables)
         String value = simulation.getOrDefault("amount", 0)
